@@ -6,7 +6,8 @@ Create and edit videos and images with PixVerse. Explore visual ideas, refine yo
 references, and make product photos, character designs, brand visuals and video scripts
 through conversation.
 
-PixVerse Agent Plugin brings creative Skills to Claude Code, Cursor, and Grok Bot.
+PixVerse Agent Plugin brings creative Skills to Claude Code, Cursor, Grok Bot, Pi,
+OpenCode, Hermes Agent, and OpenClaw.
 Describe what you want to make, provide references when needed, and let your assistant
 guide the workflow from prompt to result.
 
@@ -16,7 +17,8 @@ guide the workflow from prompt to result.
   execution is unavailable.
 
 Install for your assistant: [ChatGPT and Codex](#chatgpt-and-codex) ·
-[Claude Code](#claude-code) · [Cursor](#cursor) · [Grok Bot](#grok-bot).
+[Claude Code](#claude-code) · [Cursor](#cursor) · [Grok Bot](#grok-bot) ·
+[Pi](#pi) · [OpenCode](#opencode) · [Hermes Agent](#hermes-agent) · [OpenClaw](#openclaw).
 
 ## What You Can Create
 
@@ -94,10 +96,126 @@ See [Cursor's local installation guide](https://cursor.com/docs/plugins#test-plu
 
 ## Grok Bot
 
-Open **Connect apps**, search for **PixVerse**, and choose **Add** when it is available.
-Complete PixVerse sign-in in your browser, then use `@` to attach PixVerse to your task.
-App availability depends on your catalog and organization settings.
-See [Grok Bot's connection guide](https://docs.x.ai/grok-bot/computer-and-apps#connect-an-app).
+In **Connect apps**, search for **PixVerse** and install the plugin with its Skills when
+available. Complete sign-in, then check that the PixVerse Skills are enabled for your Bot.
+Ask your Bot to check PixVerse setup before creating media.
+
+A PixVerse MCP connection alone does not install the Skills. Plugin availability depends
+on your catalog and organization settings. See [Grok Bot's connection guide](https://docs.x.ai/grok-bot/computer-and-apps#connect-an-app).
+
+## Pi
+
+Clone the complete repository where Pi runs, keeping `skills-shared/` and `scripts/` alongside the Skills:
+
+```sh
+git clone https://github.com/PixVerseAI/agent-plugin.git
+```
+
+Add the following to `~/.pi/agent/settings.json`, using your clone's absolute path and
+preserving existing settings:
+
+```jsonc
+{ "skills": ["/absolute/path/to/agent-plugin/skills"] }
+```
+
+Restart Pi and ask it to check PixVerse setup. For a single session, use
+`pi --skill /absolute/path/to/agent-plugin/skills`.
+
+If local execution is structurally unavailable, add the following to `~/.pi/agent/mcp.json`
+and sign in with `pi mcp login pixverse`:
+
+```jsonc
+{ "mcpServers": { "pixverse": { "type": "http", "url": "https://mcp.pixverse.ai/mcp" } } }
+```
+
+See [Pi Skills](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/skills.md)
+and [Pi MCP](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/mcp.md).
+
+## OpenCode
+
+Clone the complete repository where OpenCode runs, keeping `skills-shared/` and `scripts/` alongside the Skills:
+
+```sh
+git clone https://github.com/PixVerseAI/agent-plugin.git
+```
+
+Add the following to `~/.config/opencode/opencode.json`, using your clone's absolute path
+and preserving existing settings:
+
+```jsonc
+{ "skills": { "paths": ["/absolute/path/to/agent-plugin/skills"] } }
+```
+
+Restart OpenCode, verify discovery with `opencode debug skill`, and ask it to check PixVerse setup.
+If local execution is structurally unavailable, add the following to the same config and
+run `opencode mcp auth pixverse`:
+
+```jsonc
+{ "mcp": { "pixverse": { "type": "remote", "url": "https://mcp.pixverse.ai/mcp", "enabled": true } } }
+```
+
+See [OpenCode Skills](https://opencode.ai/docs/skills/) and
+[OpenCode MCP](https://opencode.ai/docs/mcp-servers/).
+
+## Hermes Agent
+
+Clone the complete repository where Hermes runs, keeping `skills-shared/` and `scripts/` alongside the Skills:
+
+```sh
+git clone https://github.com/PixVerseAI/agent-plugin.git
+```
+
+Add the following to `~/.hermes/config.yaml`, using your clone's absolute path and
+preserving existing settings:
+
+```yaml
+skills:
+  external_dirs:
+    - /absolute/path/to/agent-plugin/skills
+```
+
+Restart Hermes, check discovery with `hermes skills list`, and ask it to check PixVerse setup.
+Give Hermes the repository path so it can read the shared files from the local filesystem;
+`skill_view` only opens files inside a Skill directory.
+If local execution is structurally unavailable, add the following to the same config and use
+`hermes mcp login pixverse` to authorize:
+
+```yaml
+mcp_servers:
+  pixverse:
+    url: https://mcp.pixverse.ai/mcp
+    auth: oauth
+```
+
+See [Hermes Skills](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/skills.md)
+and [Hermes MCP](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/mcp.md).
+
+## OpenClaw
+
+Clone the complete repository where OpenClaw runs, keeping `skills-shared/` and `scripts/` alongside the Skills:
+
+```sh
+git clone https://github.com/PixVerseAI/agent-plugin.git
+```
+
+Add the following to `~/.openclaw/openclaw.json`, using your clone's absolute path and
+preserving existing settings:
+
+```jsonc
+{ "skills": { "load": { "extraDirs": ["/absolute/path/to/agent-plugin/skills"] } } }
+```
+
+Restart OpenClaw, check discovery with `openclaw skills list`, and ask it to check PixVerse setup.
+If local execution is structurally unavailable, add the following to the same config,
+then authorize through **Settings → MCP** or
+`openclaw mcp login pixverse` (follow OpenClaw's Gateway instructions for CLI login):
+
+```jsonc
+{ "mcp": { "servers": { "pixverse": { "url": "https://mcp.pixverse.ai/mcp", "transport": "streamable-http", "auth": "oauth" } } } }
+```
+
+See [OpenClaw Skills](https://docs.openclaw.ai/tools/skills) and
+[OpenClaw MCP](https://docs.openclaw.ai/tools/mcp).
 
 ## Usage
 
