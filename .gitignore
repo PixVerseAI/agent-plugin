@@ -1,0 +1,11 @@
+# Local machine files only; keep plugin manifests, skills and assets tracked.
+.DS_Store
+Thumbs.db
+desktop.ini
+__MACOSX/
+.env
+.env.*
+__pycache__/
+*.py[cod]
+.venv/
+projects/

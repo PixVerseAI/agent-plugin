@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "pixverse": {
+      "type": "http",
+      "url": "https://mcp.pixverse.ai/mcp"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "pixverse",
+  "owner": {
+    "name": "PixVerse",
+    "email": "support@pixverse.ai"
+  },
+  "description": "Create and edit videos and images with PixVerse. Explore visual ideas, refine your references, and make product photos, character designs, brand visuals and video scripts through conversation.",
+  "plugins": [
+    {
+      "name": "pixverse",
+      "source": "./",
+      "description": "Create and edit videos and images with PixVerse. Explore visual ideas, refine your references, and make product photos, character designs, brand visuals and video scripts through conversation.",
+      "version": "1.5.0"
+    }
+  ]
+}

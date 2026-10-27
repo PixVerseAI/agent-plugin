@@ -1,0 +1,23 @@
+{
+  "name": "pixverse",
+  "version": "1.5.0",
+  "description": "Create and edit videos and images with PixVerse. Explore visual ideas, refine your references, and make product photos, character designs, brand visuals and video scripts through conversation.",
+  "author": {
+    "name": "PixVerse",
+    "email": "support@pixverse.ai"
+  },
+  "homepage": "https://app.pixverse.ai",
+  "license": "MIT",
+  "keywords": [
+    "pixverse",
+    "image-generation",
+    "video-generation",
+    "voice-generation",
+    "music",
+    "agent-skills",
+    "mcp"
+  ],
+  "repository": "https://github.com/PixVerseAI/agent-plugin",
+  "logo": "assets/logo.png",
+  "skills": "./skills/"
+}

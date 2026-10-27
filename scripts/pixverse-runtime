@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PYTHON_BIN="${PYTHON_BIN:-python3}"
+
+export PIXVERSE_AGENT_PLUGIN_ROOT="$ROOT"
+export PIXVERSE_AGENT_RUNTIME_EXECUTABLE="$ROOT/scripts/pixverse-runtime"
+export PIXVERSE_CLI_SOURCE="agent-plugin"
+RUNTIME_ROOT="$ROOT"
+export PYTHONPATH="$RUNTIME_ROOT${PYTHONPATH:+:$PYTHONPATH}"
+
+exec "$PYTHON_BIN" -m pixverse_runtime.cli "$@"
